@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="541c2e9e-3770-4d80-b486-5881417b41f2" name="Default Changelist" comment="" />
+    <list default="true" id="541c2e9e-3770-4d80-b486-5881417b41f2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Game.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dist/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/main.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Block.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Snake.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Snake.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -15,7 +24,11 @@
       </list>
     </option>
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="1XCtBWiHlL3xxNqOl1p76My4gBA" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showExcludedFiles" value="true" />
@@ -34,6 +47,16 @@
       <recent name="$PROJECT_DIR$/dist" />
     </key>
   </component>
+  <component name="RunManager">
+    <configuration name="index.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/snake/dist/index.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.index.html" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -44,25 +67,46 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1580561768856</updated>
-      <workItem from="1580561770326" duration="9777000" />
+      <workItem from="1580561770326" duration="9891000" />
+      <workItem from="1580658660520" duration="7137000" />
+      <workItem from="1580746717226" duration="5052000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="WindowStateProjectService">
     <state x="278" y="62" width="851" height="675" key="#Live_Templates" timestamp="1580562090503">
       <screen x="0" y="34" width="1366" height="734" />
     </state>
     <state x="278" y="62" width="851" height="675" key="#Live_Templates/0.34.1366.734@0.34.1366.734" timestamp="1580562090503" />
-    <state x="142" y="38" key="SettingsEditor" timestamp="1580566745191">
+    <state x="141" y="59" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1580751363699">
       <screen x="0" y="34" width="1366" height="734" />
     </state>
-    <state x="142" y="38" key="SettingsEditor/0.34.1366.734@0.34.1366.734" timestamp="1580566745191" />
-    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1580565879961">
+    <state x="141" y="59" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.34.1366.734@0.34.1366.734" timestamp="1580751363699" />
+    <state x="0" y="34" width="1356" height="732" key="CommitChangelistDialog2" timestamp="1580751808128">
       <screen x="0" y="34" width="1366" height="734" />
     </state>
-    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.34.1366.734@0.34.1366.734" timestamp="1580565879961" />
+    <state x="0" y="34" width="1356" height="732" key="CommitChangelistDialog2/0.34.1366.734@0.34.1366.734" timestamp="1580751808128" />
+    <state x="142" y="38" key="SettingsEditor" timestamp="1580751009334">
+      <screen x="0" y="34" width="1366" height="734" />
+    </state>
+    <state x="142" y="38" key="SettingsEditor/0.34.1366.734@0.34.1366.734" timestamp="1580751009334" />
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup" timestamp="1580750981369">
+      <screen x="0" y="34" width="1366" height="734" />
+    </state>
+    <state x="346" y="89" width="672" height="678" key="search.everywhere.popup/0.34.1366.734@0.34.1366.734" timestamp="1580750981369" />
   </component>
 </project>

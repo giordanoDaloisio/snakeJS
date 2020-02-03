@@ -7,10 +7,11 @@ function setStyle(element, properties){
 function createBoard(root){
   let board = document.createElement('div');
   setStyle(board, {
+    position: 'relative',
     width: '90%',
     height: '80vh',
     margin: '5% auto',
-    backgroundColor: 'white',
+    backgroundColor: '#80807a',
   });
   root.appendChild(board);
   return board;
