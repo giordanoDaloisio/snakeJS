@@ -1,8 +1,12 @@
 import Snake from './Snake';
+import Food from './Food';
 
-let Game = function(board){
+const Game = function(board){
+
   this.start = function(){
-    let snake = new Snake(board);
+    const food = new Food(board);
+    const snake = new Snake(board);
+    let foodDiv = food.init();
     let direction = "right";
 
     window.addEventListener("keydown",ev => {
@@ -22,8 +26,14 @@ let Game = function(board){
       }
     });
 
+    snake.head.addEventListener("eat", function(){
+      foodDiv.destroy();
+      foodDiv = food.init();
+    });
+
     setInterval(()=>{
       snake.move(direction);
+      snake.eat(food);
     },1000/5);
 
   };
