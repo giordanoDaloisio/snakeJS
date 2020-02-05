@@ -1,12 +1,12 @@
 import {setStyle} from './utils';
 
 let Food = function(board){
-
+  const blockSize = board.getBlockSize();
   this.init = function(){
-    this.width = board.block * 2;
-    this.height = board.block * 2;
-    this.x = (Math.floor(Math.random() * (100-1)))*board.block;
-    this.y = (Math.floor(Math.random() * (40-1)))*board.block;
+    this.width = blockSize * 2;
+    this.height = blockSize * 2;
+    this.x = (Math.floor(Math.random() * (100-1)))*blockSize;
+    this.y = (Math.floor(Math.random() * (40-1)))*blockSize;
     const food = document.createElement("div");
 
     setStyle(food, {

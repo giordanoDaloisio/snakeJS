@@ -5,34 +5,34 @@ const Game = function(board){
 
   this.start = function(){
     const food = new Food(board);
-    const snake = new Snake(board);
     let foodDiv = food.init();
-    let direction = "right";
+    const snake = new Snake(board);
 
     window.addEventListener("keydown",ev => {
       switch(ev.code){
         case 'ArrowUp':
-          direction = "up";
+          snake.head.direction = "up";
           break;
         case 'ArrowDown':
-          direction = "down";
+          snake.head.direction = "down";
           break;
         case 'ArrowLeft':
-          direction = "left";
+          snake.head.direction = "left";
           break;
         case 'ArrowRight':
-          direction = "right";
+          snake.head.direction = "right";
           break;
       }
     });
 
-    snake.head.addEventListener("eat", function(){
+    snake.head.getElement().addEventListener("eat", function(){
       foodDiv.destroy();
       foodDiv = food.init();
+      snake.grow();
     });
 
     setInterval(()=>{
-      snake.move(direction);
+      snake.move();
       snake.eat(food);
     },1000/5);
 
