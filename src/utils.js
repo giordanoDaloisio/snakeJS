@@ -6,21 +6,48 @@ function setStyle(element, properties){
 
 function createBoard(root){
   let board = document.createElement('div');
-  board.getBlockSize = () => {return 10};
+  board.getBlockSize = () => {return 20};
+  board.getWidth = () => {return 50};
+  board.getHeight = () => {return 20};
   setStyle(board, {
     position: 'relative',
-    width: board.getBlockSize()*100+'px',
-    height: board.getBlockSize()*40+'px',
+    width: board.getBlockSize()*board.getWidth()+'px',
+    height: board.getBlockSize()*board.getHeight()+'px',
     margin: '5% auto',
-    backgroundColor: '#80807a',
-    backgroundImage: 'linear-gradient(rgba(0, 255, 0, .7) 1px, transparent .1em), linear-gradient(90deg, rgba(0, 255, 0, .7) 1px, transparent .1em)',
-    backgroundSize: '10px 10px'
+    border: '1px solid black',
+    backgroundColor: '#ffffff',
+    backgroundImage: 'linear-gradient(#000 1px, transparent .1em), linear-gradient(90deg, #000 1px, transparent .1em)',
+    backgroundSize: board.getBlockSize()+"px "+board.getBlockSize()+"px"
   });
   root.appendChild(board);
   return board;
 }
 
+function createBlock(x, y, width, height, direction, root){
+  let div = document.createElement('div');
+  setStyle(div,{
+    position: 'absolute',
+    left: x+'px',
+    top: y+'px',
+    width: width+'px',
+    height: height+'px',
+    backgroundColor: 'black'
+  });
+  root.appendChild(div);
+  return {
+    x,
+    y,
+    width,
+    height,
+    direction,
+    getElement: function() {
+      return div
+    }
+  };
+}
+
 export {
   setStyle,
-  createBoard
+  createBoard,
+  createBlock
 };

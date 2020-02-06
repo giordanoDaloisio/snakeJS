@@ -1,100 +1,92 @@
-import {setStyle} from './utils';
-import Block from './Block';
+import {setStyle, createBlock} from './utils';
 
 let Snake = function(root, direction="") {
+
   const blockSize = root.getBlockSize();
-  let blocks = [];
+  let blocks = [createBlock(blockSize, blockSize, blockSize, blockSize, direction, root)];
 
-  let createBlock = (x, y, width, height, direction) => {
-    const block = new Block(x, y, width, height, direction);
-    blocks.push(block);
-    root.appendChild(block.getElement());
-    return block;
+  this.head = blocks[0];
+  this.getLength = function(){
+    return blocks.length
   };
-
-  this.head = createBlock(blockSize, blockSize, blockSize*2, blockSize*2, direction);
 
   let setDirection = function(block, direction){
-    block.direction = direction;
-    switch(direction){
-      case 'right':
+    // const board_width = root.offsetWidth;
+    // const board_height = root.offsetHeight;
+    switch (direction){
+      case  "right":
         block.x += blockSize;
+        block.direction = direction;
         break;
-      case 'left':
+      case "left":
         block.x -= blockSize;
+        block.direction = direction;
         break;
-      case 'up':
+      case "up":
         block.y -= blockSize;
+        block.direction = direction;
         break;
-      case 'down':
+      case "down":
         block.y += blockSize;
-        break;
+        block.direction = direction;
     }
+    if(block.x < 0){
+      block.x = (root.getWidth()-1) * root.getBlockSize();
+    }
+    else if(block.x/root.getBlockSize() > root.getWidth()-1){
+      block.x = 0;
+    }
+    else if(block.y < 0){
+      block.y = (root.getHeight()-1) * root.getBlockSize();
+    }
+    else if(block.y/root.getBlockSize() > root.getHeight()-1){
+      block.y = 0;
+    }
+    setStyle(block.getElement(), {
+      left: block.x+'px',
+      top: block.y+'px',
+    });
   };
 
-  this.move = function(){
-    const board_width = root.offsetWidth;
-    const board_height = root.offsetHeight;
-    const head = this.head;
-    setDirection(this.head, this.head.direction);
-
-    if(head.x < 0){
-      head.x = board_width - head.width;
-    }
-    else if(head.x + head.width > board_width){
-      head.x = 0;
-    }
-    else if(head.y < 0){
-      head.y = board_height - head.height;
-    }
-    else if(head.y + head.height > board_height){
-      head.y = 0;
-    }
-
-    setStyle(this.head.getElement(), {
-      left: this.head.x+'px',
-      top: this.head.y+'px',
-    });
-
-    // for(let i=0; i<blocks.length; i++){
-    //   setDirection(blocks[i], direction);
-    //   setStyle(blocks[i], {
-    //     left: (this.x-blockSize*i)+'px',
-    //     top: (this.y)+'px'
-    //   });
-    // }
+  this.move = function(direction){
+    let last = blocks.pop();
+    last.x = this.head.x;
+    last.y = this.head.y;
+    setDirection(last, direction);
+    this.head = last;
+    blocks.unshift(last);
   };
 
   this.eat = function(food){
-    if(food.x <= this.head.x && this.head.x <= food.x+food.width &&
-        food.y <= this.head.y && this.head.y <= food.y+food.height){
-      let e = new Event('eat');
-      this.head.getElement().dispatchEvent(e);
-    }
+    return food.x === this.head.x && food.y === this.head.y
   };
 
   this.grow = function(){
-    let prevBlock = blocks[0];
-    console.log(blocks.length);
-    console.log(prevBlock);
-    if(prevBlock.direction === "left"){
-      let x = prevBlock.x + prevBlock.width;
-      let y = prevBlock.y;
-      createBlock(x, y, prevBlock.width, prevBlock.height, prevBlock.direction);
-    } else if (prevBlock.direction === "right"){
-      let x = Math.abs(prevBlock.x - prevBlock.width);
-      let y = prevBlock.y;
-      createBlock(x, y, prevBlock.width, prevBlock.height, prevBlock.direction);
-    } else if(prevBlock.direction === "down"){
-      let x = prevBlock.x;
-      let y = Math.abs(prevBlock.y-prevBlock.height);
-      createBlock(x, y, prevBlock.width, prevBlock.height, prevBlock.direction);
-    } else if (prevBlock.direction === "up"){
-      let x = prevBlock.x;
-      let y = prevBlock.y + prevBlock.height;
-      createBlock(x, y, prevBlock.width, prevBlock.height, prevBlock.direction);
+    let prevBlock = this.head;
+    let x = 0;
+    let y = 0;
+    switch(prevBlock.direction){
+      case("left"):
+        x = prevBlock.x + prevBlock.width;
+        y = prevBlock.y;
+        break;
+      case("right"):
+        x = Math.abs(prevBlock.x - prevBlock.width);
+        y = prevBlock.y;
+        break;
+      case("down"):
+        x = prevBlock.x;
+        y = Math.abs(prevBlock.y-prevBlock.height);
+        break;
+      case( "up"):
+        x = prevBlock.x;
+        y = prevBlock.y + prevBlock.height;
+        break;
     }
-  };
+    let new_head = createBlock(x, y, prevBlock.width, prevBlock.height, prevBlock.direction, root);
+    this.head = new_head;
+    blocks.unshift(new_head);
+   };
 };
 
 export default Snake;
