@@ -11,8 +11,6 @@ let Snake = function(root, direction="") {
   };
 
   let setDirection = function(block, direction){
-    // const board_width = root.offsetWidth;
-    // const board_height = root.offsetHeight;
     switch (direction){
       case  "right":
         block.x += blockSize;
@@ -62,7 +60,7 @@ let Snake = function(root, direction="") {
   };
 
   this.grow = function(){
-    let prevBlock = this.head;
+    let prevBlock = blocks[blocks.length-1];
     let x = 0;
     let y = 0;
     switch(prevBlock.direction){
@@ -83,10 +81,19 @@ let Snake = function(root, direction="") {
         y = prevBlock.y + prevBlock.height;
         break;
     }
-    let new_head = createBlock(x, y, prevBlock.width, prevBlock.height, prevBlock.direction, root);
-    this.head = new_head;
-    blocks.unshift(new_head);
-   };
+    let new_block = createBlock(x, y, prevBlock.width, prevBlock.height, prevBlock.direction, root);
+    blocks.push(new_block);
+  };
+
+  this.dead = function() {
+    for(let i = 1; i < blocks.length; i++){
+      if(this.head.x === blocks[i].x && this.head.y === blocks[i].y){
+        return true;
+      }
+    }
+    return false;
+  }
+
 };
 
 export default Snake;

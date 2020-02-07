@@ -25,20 +25,14 @@ const Game = function(board){
 
     window.addEventListener("keydown", changeDirection);
 
-    // snake.head.getElement().addEventListener("eat", function(){
-    //   console.log("event");
-    //   foodDiv.destroy();
-    //   foodDiv = food.init();
-    //   snake.grow();
-    // });
-
     setInterval(()=>{
       snake.move(direction);
-      console.log(snake.eat(food));
       if(snake.eat(food)){
         foodDiv.destroy();
         foodDiv = food.init();
         snake.grow();
+      }else if(snake.dead()){
+
       }
     },1000/10);
   };

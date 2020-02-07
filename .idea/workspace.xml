@@ -2,16 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="541c2e9e-3770-4d80-b486-5881417b41f2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/snake.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/snake.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/main.js.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Block.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Food.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Food.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Snake.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Snake.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +78,8 @@
       <workItem from="1580995697088" duration="1064000" />
       <workItem from="1581000149649" duration="1780000" />
       <workItem from="1581014570479" duration="3259000" />
-      <workItem from="1581019461335" duration="3480000" />
+      <workItem from="1581019461335" duration="4151000" />
+      <workItem from="1581070865000" duration="512000" />
     </task>
     <task id="LOCAL-00001" summary="added head movement">
       <created>1580751903738</created>
