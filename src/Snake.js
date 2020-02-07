@@ -1,11 +1,13 @@
 import {setStyle, createBlock} from './utils';
 
-let Snake = function(root, direction="") {
+let Snake = function(root) {
 
   const blockSize = root.getBlockSize();
-  let blocks = [createBlock(blockSize, blockSize, blockSize, blockSize, direction, root)];
-
-  this.head = blocks[0];
+  let blocks = [createBlock(blockSize, blockSize, blockSize, blockSize, root)];
+  let head = blocks[0];
+  this.getDirection = function(){
+    return head.direction;
+  };
   this.getLength = function(){
     return blocks.length
   };
@@ -48,15 +50,15 @@ let Snake = function(root, direction="") {
 
   this.move = function(direction){
     let last = blocks.pop();
-    last.x = this.head.x;
-    last.y = this.head.y;
+    last.x = head.x;
+    last.y = head.y;
     setDirection(last, direction);
-    this.head = last;
+    head = last;
     blocks.unshift(last);
   };
 
   this.eat = function(food){
-    return food.x === this.head.x && food.y === this.head.y
+    return food.x === head.x && food.y === head.y
   };
 
   this.grow = function(){
@@ -81,19 +83,24 @@ let Snake = function(root, direction="") {
         y = prevBlock.y + prevBlock.height;
         break;
     }
-    let new_block = createBlock(x, y, prevBlock.width, prevBlock.height, prevBlock.direction, root);
+    let new_block = createBlock(x, y, prevBlock.width, prevBlock.height, root, prevBlock.direction);
     blocks.push(new_block);
   };
 
   this.dead = function() {
     for(let i = 1; i < blocks.length; i++){
-      if(this.head.x === blocks[i].x && this.head.y === blocks[i].y){
+      if(head.x === blocks[i].x && head.y === blocks[i].y){
         return true;
       }
     }
     return false;
-  }
+  };
 
+  this.reset = function() {
+    for(let block of blocks){
+      block.destroy();
+    }
+  }
 };
 
 export default Snake;

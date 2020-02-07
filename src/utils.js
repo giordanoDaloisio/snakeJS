@@ -23,7 +23,7 @@ function createBoard(root){
   return board;
 }
 
-function createBlock(x, y, width, height, direction, root){
+function createBlock(x, y, width, height, root, direction=""){
   let div = document.createElement('div');
   setStyle(div,{
     position: 'absolute',
@@ -42,6 +42,9 @@ function createBlock(x, y, width, height, direction, root){
     direction,
     getElement: function() {
       return div
+    },
+    destroy: function() {
+      root.removeChild(div)
     }
   };
 }

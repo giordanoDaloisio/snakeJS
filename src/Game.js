@@ -5,12 +5,16 @@ const Game = function(board){
   this.start = function(){
 
     const food = new Food(board);
-    let foodDiv = food.init();
-    const snake = new Snake(board);
-    let direction = "";
+    let snake, foodDiv, direction;
+
+    function init() {
+      snake = new Snake(board);
+      foodDiv = food.init();
+      direction = "";
+    }
 
     function changeDirection(event){
-      const prev_dir = snake.head.direction;
+      const prev_dir = snake.getDirection();
       direction = prev_dir;
       if(event.code === 'ArrowUp' && (prev_dir!=='down' || snake.getLength() < 2)){
         direction = 'up';
@@ -23,18 +27,24 @@ const Game = function(board){
       }
     }
 
-    window.addEventListener("keydown", changeDirection);
-
-    setInterval(()=>{
+    function play(){
       snake.move(direction);
       if(snake.eat(food)){
         foodDiv.destroy();
         foodDiv = food.init();
         snake.grow();
-      }else if(snake.dead()){
-
       }
-    },1000/10);
+      if(snake.dead()){
+        alert("Hai perso");
+        snake.reset();
+        foodDiv.destroy();
+        init();
+      }
+    }
+
+    init();
+    window.addEventListener("keydown", changeDirection);
+    setInterval(play,1000/10);
   };
 };
 
