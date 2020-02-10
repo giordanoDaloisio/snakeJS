@@ -1,8 +1,9 @@
 import Snake from './Snake';
 import FoodManager from './FoodManager';
-import {createBoard} from './utils';
+import {createBoard, createScore} from './utils';
 
 const Game = function(root){
+  const scoreBoard = createScore(root);
   const board = createBoard(root);
   root.appendChild(board);
 
@@ -15,6 +16,7 @@ const Game = function(root){
       food = foodManager.init(snake);
       direction = "";
       score = 0;
+      scoreBoard.textContent = score;
     }
 
     function changeDirection(event){
@@ -35,6 +37,7 @@ const Game = function(root){
       snake.move(direction);
       if(snake.eat(food)){
         score++;
+        scoreBoard.textContent = score;
         food.destroy();
         food = foodManager.init(snake);
         snake.grow();
