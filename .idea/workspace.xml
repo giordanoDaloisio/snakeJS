@@ -2,11 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="541c2e9e-3770-4d80-b486-5881417b41f2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Block.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/FoodManager.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/dist/main.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dist/main.js.map" beforeDir="false" afterPath="$PROJECT_DIR$/dist/main.js.map" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Food.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Game.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Game.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Snake.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Snake.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/utils.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/utils.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -85,6 +89,7 @@
       <workItem from="1581084089801" duration="32000" />
       <workItem from="1581085105078" duration="1486000" />
       <workItem from="1581087994204" duration="2429000" />
+      <workItem from="1581347968700" duration="2434000" />
     </task>
     <task id="LOCAL-00001" summary="added head movement">
       <created>1580751903738</created>

@@ -1,18 +1,23 @@
-import {setStyle, createBlock} from './utils';
+import Block from './Block';
 
 let Snake = function(root) {
-
   const blockSize = root.getBlockSize();
-  let blocks = [createBlock(blockSize, blockSize, blockSize, blockSize, root)];
+  const color = "black";
+  let blocks = [new Block(blockSize, blockSize, root)];
   let head = blocks[0];
+  head.draw(color);
+
   this.getDirection = function(){
     return head.direction;
   };
   this.getLength = function(){
     return blocks.length
   };
+  this.getBlocks = function(){
+    return blocks;
+  };
 
-  let setDirection = function(block, direction){
+  let handleDirection = function(block, direction){
     switch (direction){
       case  "right":
         block.x += blockSize;
@@ -42,17 +47,14 @@ let Snake = function(root) {
     else if(block.y/root.getBlockSize() > root.getHeight()-1){
       block.y = 0;
     }
-    setStyle(block.getElement(), {
-      left: block.x+'px',
-      top: block.y+'px',
-    });
+    block.draw(color);
   };
 
   this.move = function(direction){
     let last = blocks.pop();
     last.x = head.x;
     last.y = head.y;
-    setDirection(last, direction);
+    handleDirection(last, direction);
     head = last;
     blocks.unshift(last);
   };
@@ -83,7 +85,7 @@ let Snake = function(root) {
         y = prevBlock.y + prevBlock.height;
         break;
     }
-    let new_block = createBlock(x, y, prevBlock.width, prevBlock.height, root, prevBlock.direction);
+    let new_block = new Block(x, y, root, prevBlock.direction);
     blocks.push(new_block);
   };
 

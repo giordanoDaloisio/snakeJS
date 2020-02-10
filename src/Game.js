@@ -1,16 +1,20 @@
 import Snake from './Snake';
-import Food from './Food';
+import FoodManager from './FoodManager';
+import {createBoard} from './utils';
 
-const Game = function(board){
+const Game = function(root){
+  const board = createBoard(root);
+  root.appendChild(board);
+
   this.start = function(){
-
-    const food = new Food(board);
-    let snake, foodDiv, direction;
+    const foodManager = new FoodManager(board);
+    let snake, food, direction, score;
 
     function init() {
       snake = new Snake(board);
-      foodDiv = food.init();
+      food = foodManager.init(snake);
       direction = "";
+      score = 0;
     }
 
     function changeDirection(event){
@@ -30,14 +34,15 @@ const Game = function(board){
     function play(){
       snake.move(direction);
       if(snake.eat(food)){
-        foodDiv.destroy();
-        foodDiv = food.init();
+        score++;
+        food.destroy();
+        food = foodManager.init(snake);
         snake.grow();
       }
       if(snake.dead()){
         alert("Hai perso");
         snake.reset();
-        foodDiv.destroy();
+        food.destroy();
         init();
       }
     }
