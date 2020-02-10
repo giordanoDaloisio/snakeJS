@@ -1,5 +1,4 @@
 import Game from './Game';
-import {createBoard} from './utils';
 
 window.addEventListener('load', function(){
   const root = document.querySelector('#root');
