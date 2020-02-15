@@ -1,6 +1,6 @@
 import Block from './Block';
 
-let FoodManager = function(board){
+const FoodManager = function(board){
   const blockSize = board.getBlockSize();
 
   this.init = function(snake){

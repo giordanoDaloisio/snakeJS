@@ -1,13 +1,12 @@
 import Snake from './Snake';
 import FoodManager from './FoodManager';
-import {createBoard, createScore} from './utils';
+import {createBoard, createScore, createStartMessage} from './utils';
 
 const Game = function(root){
   const scoreBoard = createScore(root);
   const board = createBoard(root);
-  root.appendChild(board);
 
-  this.start = function(){
+  this.start = function(evt){
     const foodManager = new FoodManager(board);
     let snake, food, direction, score;
 
@@ -51,8 +50,12 @@ const Game = function(root){
     }
 
     init();
-    window.addEventListener("keydown", changeDirection);
-    setInterval(play,1000/10);
+    createStartMessage(board);
+
+    board.addEventListener('start', function() {
+      window.addEventListener("keydown", changeDirection);
+      setInterval(play, 100);
+    });
   };
 };
 

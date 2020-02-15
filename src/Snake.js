@@ -20,19 +20,19 @@ let Snake = function(root) {
   let handleDirection = function(block, direction){
     switch (direction){
       case  "right":
-        block.x += blockSize;
+        block.moveRight();
         block.direction = direction;
         break;
       case "left":
-        block.x -= blockSize;
+        block.moveLeft();
         block.direction = direction;
         break;
       case "up":
-        block.y -= blockSize;
+        block.moveUp();
         block.direction = direction;
         break;
       case "down":
-        block.y += blockSize;
+        block.moveDown();
         block.direction = direction;
     }
     if(block.x < 0){

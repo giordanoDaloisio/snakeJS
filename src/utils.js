@@ -5,7 +5,7 @@ function setStyle(element, properties) {
 }
 
 function createBoard(root) {
-  let board = document.createElement('div');
+  const board = document.createElement('div');
   board.getBlockSize = () => {
     return 20;
   };
@@ -51,8 +51,38 @@ function createScore(root) {
   return span;
 }
 
+function createStartMessage(board){
+  const message = document.createElement("div");
+  message.innerHTML = "<p>Premi una freccia per iniziare a giocare</p>";
+  const button = document.createElement("button");
+  button.textContent = "Vai";
+  message.appendChild(button);
+  board.appendChild(message);
+  setStyle(message, {
+    textAlign: 'center',
+    position: 'absolute',
+    left: board.getWidth()/4 * board.getBlockSize() + 'px',
+    top: board.getHeight()/4 * board.getBlockSize() + 'px',
+    right: board.getWidth()/4 * board.getBlockSize() + 'px',
+    bottom: board.getHeight()/4 * board.getBlockSize() + 'px',
+    backgroundColor: 'black',
+    color: 'white',
+    fontFamily: 'monospace',
+    fontSize: '14px'
+  });
+  setStyle(button, {
+    fontFamily: 'monospace'
+  });
+  button.addEventListener('click', function() {
+    board.removeChild(message);
+    const e = new Event('start');
+    board.dispatchEvent(e);
+  })
+}
+
 export {
   setStyle,
   createBoard,
   createScore,
+  createStartMessage
 };

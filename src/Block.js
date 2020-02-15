@@ -1,7 +1,7 @@
 import {setStyle} from './utils';
 
 let Block = function(x, y, board, direction="") {
-    let div = document.createElement('div');
+    const div = document.createElement('div');
     this.width = board.getBlockSize();
     this.height = board.getBlockSize();
     this.x = x;
@@ -10,6 +10,18 @@ let Block = function(x, y, board, direction="") {
     this.destroy = function() {
       board.removeChild(div)
     };
+    this.moveRight = function(){
+        this.x += board.getBlockSize();
+    };
+    this.moveLeft = function(){
+        this.x -= board.getBlockSize();
+    };
+    this.moveDown = function(){
+        this.y += board.getBlockSize();
+    };
+    this.moveUp = function(){
+        this.y -= board.getBlockSize();
+    };
     this.draw = function(color){
       setStyle(div, {
           position: "absolute",
@@ -17,6 +29,7 @@ let Block = function(x, y, board, direction="") {
           top: this.y + 'px',
           width: this.width + 'px',
           height: this.height + 'px',
+          border: "1px solid",
           backgroundColor: color
         });
     };
