@@ -1,14 +1,18 @@
 import Snake from './Snake';
 import FoodManager from './FoodManager';
-import {createBoard, createScore, createStartMessage} from './utils';
+import {
+  createBoard,
+  createMessage,
+  createScore,
+} from './utils';
 
-const Game = function(root){
+const Game = function(root) {
   const scoreBoard = createScore(root);
   const board = createBoard(root);
 
-  this.start = function(evt){
+  this.start = function(){
     const foodManager = new FoodManager(board);
-    let snake, food, direction, score;
+    let snake, food, direction, score, intervalId;
 
     function init() {
       snake = new Snake(board);
@@ -41,21 +45,24 @@ const Game = function(root){
         food = foodManager.init(snake);
         snake.grow();
       }
-      if(snake.dead()){
-        alert("Hai perso");
+      if(snake.isDead()){
+        window.removeEventListener("keydown", changeDirection);
+        clearInterval(intervalId);
         snake.reset();
         food.destroy();
         init();
+        createMessage(board, "Hai perso!", );
       }
     }
 
     init();
-    createStartMessage(board);
+    createMessage(board, "Premi una freccia per muovere il serpente", );
 
     board.addEventListener('start', function() {
       window.addEventListener("keydown", changeDirection);
-      setInterval(play, 100);
+      intervalId = setInterval(play, 100);
     });
+
   };
 };
 

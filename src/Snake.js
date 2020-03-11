@@ -17,7 +17,7 @@ let Snake = function(root) {
     return blocks;
   };
 
-  let handleDirection = function(block, direction){
+  const handleDirection = function(block, direction){
     switch (direction){
       case  "right":
         block.moveRight();
@@ -89,7 +89,7 @@ let Snake = function(root) {
     blocks.push(new_block);
   };
 
-  this.dead = function() {
+  this.isDead = function() {
     for(let i = 1; i < blocks.length; i++){
       if(head.x === blocks[i].x && head.y === blocks[i].y){
         return true;
@@ -99,9 +99,9 @@ let Snake = function(root) {
   };
 
   this.reset = function() {
-    for(let block of blocks){
+    blocks.forEach((block)=>{
       block.destroy();
-    }
+    })
   }
 };
 

@@ -5,6 +5,7 @@ function setStyle(element, properties) {
 }
 
 function createBoard(root) {
+
   const board = document.createElement('div');
   board.getBlockSize = () => {
     return 20;
@@ -34,7 +35,7 @@ function createBoard(root) {
 function createScore(root) {
   const div = document.createElement('div');
   const span = document.createElement('span');
-  div.innerHTML = '<h3>Punteggio: </h3>';
+  div.innerHTML = '<h1>Snake Game</h1><h2>Punteggio: </h2>';
   div.appendChild(span);
   setStyle(div, {
     position: 'absolute',
@@ -45,19 +46,20 @@ function createScore(root) {
     margin: '5% auto',
     textAlign: 'center',
     fontFamily: 'monospace',
-    fontSize: 'x-large'
+    fontSize: 'large'
   });
   root.appendChild(div);
   return span;
 }
 
-function createStartMessage(board){
+function createMessage(board, textMessage, eventName="start"){
   const message = document.createElement("div");
-  message.innerHTML = "<p>Premi una freccia per iniziare a giocare</p>";
+  message.innerHTML = "<p>"+textMessage+"</p>";
   const button = document.createElement("button");
   button.textContent = "Vai";
   message.appendChild(button);
   board.appendChild(message);
+
   setStyle(message, {
     textAlign: 'center',
     position: 'absolute',
@@ -68,21 +70,25 @@ function createStartMessage(board){
     backgroundColor: 'black',
     color: 'white',
     fontFamily: 'monospace',
-    fontSize: '14px'
+    fontSize: '16px',
+    padding: '15px'
   });
+
   setStyle(button, {
-    fontFamily: 'monospace'
+    fontFamily: 'monospace',
+    marginTop: '15px'
   });
+
   button.addEventListener('click', function() {
     board.removeChild(message);
-    const e = new Event('start');
+    const e = new Event(eventName);
     board.dispatchEvent(e);
-  })
+  });
 }
 
 export {
   setStyle,
   createBoard,
   createScore,
-  createStartMessage
+  createMessage
 };
