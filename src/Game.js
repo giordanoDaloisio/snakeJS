@@ -16,7 +16,7 @@ const Game = function(root) {
 
     function init() {
       snake = new Snake(board);
-      food = foodManager.init(snake);
+      food = foodManager.createFood(snake);
       direction = "";
       score = 0;
       scoreBoard.textContent = score;
@@ -42,7 +42,7 @@ const Game = function(root) {
         score++;
         scoreBoard.textContent = score;
         food.destroy();
-        food = foodManager.init(snake);
+        food = foodManager.createFood(snake);
         snake.grow();
       }
       if(snake.isDead()){
@@ -62,7 +62,6 @@ const Game = function(root) {
       window.addEventListener("keydown", changeDirection);
       intervalId = setInterval(play, 100);
     });
-
   };
 };
 

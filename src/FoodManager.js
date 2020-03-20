@@ -3,7 +3,7 @@ import Block from './Block';
 const FoodManager = function(board){
   const blockSize = board.getBlockSize();
 
-  this.init = function(snake){
+  this.createFood = function(snake){
     const color = "red";
     let x = (Math.floor(Math.random() * (board.getWidth()-1)))*blockSize;
     let y = (Math.floor(Math.random() * (board.getHeight()-1)))*blockSize;
