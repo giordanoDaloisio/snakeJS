@@ -6,17 +6,7 @@ let Snake = function(root) {
   let blocks = [new Block(blockSize, blockSize, root)];
   let head = blocks[0];
   head.draw(color);
-
-  this.getDirection = function(){
-    return head.direction;
-  };
-  this.getLength = function(){
-    return blocks.length
-  };
-  this.getBlocks = function(){
-    return blocks;
-  };
-
+  
   const handleDirection = function(block, direction){
     switch (direction){
       case  "right":
@@ -48,6 +38,16 @@ let Snake = function(root) {
       block.y = 0;
     }
     block.draw(color);
+  };
+
+  this.getDirection = function(){
+    return head.direction;
+  };
+  this.getLength = function(){
+    return blocks.length
+  };
+  this.getBlocks = function(){
+    return blocks;
   };
 
   this.move = function(direction){
