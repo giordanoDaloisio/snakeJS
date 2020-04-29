@@ -1,12 +1,12 @@
 import Block from './Block';
 
-let Snake = function(root) {
+const Snake = function(root) {
   const blockSize = root.getBlockSize();
   const color = "black";
   let blocks = [new Block(blockSize, blockSize, root)];
   let head = blocks[0];
   head.draw(color);
-  
+
   const handleDirection = function(block, direction){
     switch (direction){
       case  "right":
