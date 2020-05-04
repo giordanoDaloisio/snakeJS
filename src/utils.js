@@ -1,3 +1,12 @@
+import {
+  BLOCK_SIZE,
+  BOARD_WIDTH,
+  BOARD_HEIGHT,
+  EASY,
+  MEDIUM,
+  HARD,
+} from './constants';
+
 function setStyle(element, properties) {
   for (let property in properties) {
     element.style[property] = properties[property];
@@ -8,13 +17,13 @@ function createBoard(root) {
 
   const board = document.createElement('div');
   board.getBlockSize = () => {
-    return 20;
+    return BLOCK_SIZE;
   };
   board.getWidth = () => {
-    return 30;
+    return BOARD_WIDTH;
   };
   board.getHeight = () => {
-    return 15;
+    return BOARD_HEIGHT;
   };
   setStyle(board, {
     position: 'absolute',
@@ -42,41 +51,41 @@ function createScore(root) {
     left: '10%',
     right: '70%',
     bottom: '0',
-    top:'0',
+    top: '0',
     margin: '5% auto',
     textAlign: 'center',
     fontFamily: 'monospace',
-    fontSize: 'large'
+    fontSize: 'large',
   });
   root.appendChild(div);
   return span;
 }
 
-function createMessage(board, textMessage, eventName="start"){
-  const message = document.createElement("div");
-  message.innerHTML = "<p>"+textMessage+"</p>";
-  const button = document.createElement("button");
-  button.textContent = "Vai";
+function createMessage(board, textMessage, eventName = 'start') {
+  const message = document.createElement('div');
+  message.innerHTML = '<p>' + textMessage + '</p>';
+  const button = document.createElement('button');
+  button.textContent = 'Vai';
   message.appendChild(button);
   board.appendChild(message);
 
   setStyle(message, {
     textAlign: 'center',
     position: 'absolute',
-    left: board.getWidth()/4 * board.getBlockSize() + 'px',
-    top: board.getHeight()/4 * board.getBlockSize() + 'px',
-    right: board.getWidth()/4 * board.getBlockSize() + 'px',
-    bottom: board.getHeight()/4 * board.getBlockSize() + 'px',
+    left: board.getWidth() / 4 * board.getBlockSize() + 'px',
+    top: board.getHeight() / 4 * board.getBlockSize() + 'px',
+    right: board.getWidth() / 4 * board.getBlockSize() + 'px',
+    bottom: board.getHeight() / 4 * board.getBlockSize() + 'px',
     backgroundColor: 'black',
     color: 'white',
     fontFamily: 'monospace',
     fontSize: '16px',
-    padding: '15px'
+    padding: '15px',
   });
 
   setStyle(button, {
     fontFamily: 'monospace',
-    marginTop: '15px'
+    marginTop: '15px',
   });
 
   button.addEventListener('click', function() {
@@ -86,9 +95,61 @@ function createMessage(board, textMessage, eventName="start"){
   });
 }
 
+function createDifficultyManager(root, game) {
+  const container = document.createElement('div');
+  container.innerHTML = '<b style="margin: 10px">Seleziona la difficolt&agrave;:</b>';
+  const easy = createRadioButton(container, 'Facile', EASY.toString());
+  const medium = createRadioButton(container, 'Medio', MEDIUM.toString(), true);
+  const hard = createRadioButton(container, 'Difficile', HARD.toString());
+
+  setStyle(container, {
+    position: 'absolute',
+    left: '30%',
+    bottom: '10%',
+    height: '150px',
+    margin: '30px auto',
+    width: '600px',
+    textAlign: 'center',
+    fontFamily: 'monospace',
+  });
+
+  root.appendChild(container);
+  container.addEventListener('click', (e) => {
+    for (let radio of [easy, medium, hard]) {
+      if (e.target === radio && radio.checked) {
+        game.setDifficulty(parseInt(radio.getAttribute('value')));
+        radio.blur();
+      }
+    }
+  });
+}
+
+function createRadioButton(container, labelText, value, selected = false) {
+  const group = document.createElement('span');
+  const label = document.createElement('label');
+  label.setAttribute('for', value);
+  label.textContent = labelText;
+  const radio = document.createElement('input');
+  radio.setAttribute('type', 'radio');
+  radio.setAttribute('name', 'difficulty');
+  radio.setAttribute('id', value);
+  radio.setAttribute('value', value);
+  if (selected) {
+    radio.setAttribute('checked', 'checked');
+  }
+  setStyle(group, {
+    margin: '0 5px',
+  });
+  group.appendChild(label);
+  group.appendChild(radio);
+  container.appendChild(group);
+  return radio;
+}
+
 export {
   setStyle,
   createBoard,
   createScore,
-  createMessage
+  createMessage,
+  createDifficultyManager,
 };
