@@ -14,7 +14,6 @@ function setStyle(element, properties) {
 }
 
 function createBoard(root) {
-
   const board = document.createElement('div');
   board.getBlockSize = () => {
     return BLOCK_SIZE;
@@ -98,10 +97,9 @@ function createMessage(board, textMessage, eventName = 'start') {
 function createDifficultyManager(root, game) {
   const container = document.createElement('div');
   container.innerHTML = '<b style="margin: 10px">Seleziona la difficolt&agrave;:</b>';
-  const easy = createRadioButton(container, 'Facile', EASY.toString());
-  const medium = createRadioButton(container, 'Medio', MEDIUM.toString(), true);
-  const hard = createRadioButton(container, 'Difficile', HARD.toString());
-
+  const easy = createRadioButton(container, 'Facile', 'difficulty', EASY.toString());
+  const medium = createRadioButton(container, 'Medio', 'difficulty', MEDIUM.toString(), true);
+  const hard = createRadioButton(container, 'Difficile', 'difficulty', HARD.toString());
   setStyle(container, {
     position: 'absolute',
     left: '30%',
@@ -112,7 +110,6 @@ function createDifficultyManager(root, game) {
     textAlign: 'center',
     fontFamily: 'monospace',
   });
-
   root.appendChild(container);
   container.addEventListener('click', (e) => {
     for (let radio of [easy, medium, hard]) {
@@ -124,14 +121,14 @@ function createDifficultyManager(root, game) {
   });
 }
 
-function createRadioButton(container, labelText, value, selected = false) {
+function createRadioButton(container, labelText, name, value, selected = false) {
   const group = document.createElement('span');
   const label = document.createElement('label');
   label.setAttribute('for', value);
   label.textContent = labelText;
   const radio = document.createElement('input');
   radio.setAttribute('type', 'radio');
-  radio.setAttribute('name', 'difficulty');
+  radio.setAttribute('name', name);
   radio.setAttribute('id', value);
   radio.setAttribute('value', value);
   if (selected) {
