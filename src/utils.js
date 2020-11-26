@@ -103,7 +103,6 @@ function createDifficultyManager(root, game) {
   setStyle(container, {
     position: 'absolute',
     left: '30%',
-    bottom: '10%',
     height: '150px',
     margin: '30px auto',
     width: '600px',
