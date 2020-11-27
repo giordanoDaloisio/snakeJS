@@ -1,6 +1,6 @@
 import {setStyle} from './utils';
 
-let Block = function(x, y, board, direction="") {
+const Block = function(x, y, board, direction="") {
     const div = document.createElement('div');
     this.width = board.getBlockSize();
     this.height = board.getBlockSize();
